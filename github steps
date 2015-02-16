@@ -1,0 +1,17 @@
+github steps
+
+1) make sure you're in the folder - check with "ls"
+2) if you need to ge to the folder, cd .. will take you back/up one folder
+
+3) "git status" to check status (which folders are tracked)
+
+4) if not all files/folders are tracked, "git add ." to track all files in current directory (if all relevant files are already tracked, skip step 3)
+
+5) once you're in the folder/have all relevant files tracked, "git commit -a -m "[insert change or update message/referenec"]
+
+6) "git push origin master"
+
+7) enter username and pw
+
+
+
