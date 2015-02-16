@@ -2,7 +2,7 @@
 $( window ).scroll(
 	function (){
 		max=150
-		min = 60
+		min = 55
 		$("header").css("height",height_calc())
 			function height_calc(){
 				var scroll=$(window).scrollTop();
