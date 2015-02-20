@@ -4,6 +4,7 @@ body {
 	background: white;
 	font-family: helvetica;
 }
+
 }
 h1 {
 	font-size: 60px;
@@ -12,6 +13,11 @@ h1 {
 h2 {
 	font-size: 18px;
 }
+
+td h2 {
+	padding-left:150px;
+}
+
 header {
 	position: fixed;
 	left: 0;
@@ -34,6 +40,10 @@ img {
 /*td {
 	vertical-align: text-top;
 }*/
+
+.gridimage{
+	height:230px;
+}
 
 .header_holder {
 		position: relative;
@@ -60,7 +70,7 @@ p {
 
 ul.header {
 	padding: 1px;
-	text-align: right;
+/*	text-align: right;*/
 }
 
 li.header {
@@ -132,6 +142,58 @@ a:hover {
 	height: 230px;
 }
 
+img.gallery{
+	height: 500px;
+}
+
+
+nav ul ul {
+	display: none;
+}
+
+nav ul li:hover > ul {
+	display: block;
+}
+
+nav ul{
+	list-style: none;
+	position: relative;
+/*	display: inline-table;*/
+}
+
+	nav ul:after {
+			content: ""; clear: both; display: block;
+		}
+
+
+nav ul ul {
+	/*background: #5f6975; */border-radius: 0px; padding: 0;
+	position: absolute; top: 100%;
+	
+}
+	nav ul ul li {
+		float: none; 
+		/*border-top: 1px solid #6b727c;
+		border-bottom: 1px solid #575f6a;*/
+		position: relative;
+	}
+		nav ul ul li a {
+			/*padding: 15px 40px;*/
+			color: black;
+			font-size: 14px;
+		}	
+			/*nav ul ul li a:hover {
+				background: #4b545f;
+			}*/
+
+nav ul li {
+	float: left;
+}
+	
+	nav ul li a {
+		display: block; /*padding: 25px 40px;*/
+		/*color: #757575; */text-decoration: none;
+	}
 
 /*.logo:hover{
 	fill:#efc411;
