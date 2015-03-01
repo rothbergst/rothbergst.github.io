@@ -187,6 +187,70 @@
 	66% { background: #ccc; box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; }
 }
 
+
+
+		/* IMAGE GALLERY */
+		.previewImageContainer {
+			float: left;
+		    display: inline-block;
+		    height: auto;
+		    position: relative;
+		    text-align: center;
+		    width: 100%;
+		    margin: 0 auto;
+		    padding: 0 10px;
+		}
+			iframe {
+				width: 100%;
+				height: auto;
+				display: none;
+			}
+			.largepreviewImageContainer {
+				margin-top: 10px;
+			}
+				.largepreviewImageContainer, .largepreviewImageContainer .og-fullimg {
+				    display: inline-block;
+				    height: auto;
+				    text-align: center;
+				    width: 100%;
+				}
+					.largepreviewImageContainer .og-fullimg img {
+					    height: 100%;
+					    margin: 0 auto;
+					    max-height: 100%;
+					    max-width: 100%;
+					    width: auto;
+					}
+			.SmallPreviewImageContainer {
+			    bottom: 0;
+			    display: inline-block;
+			    height: auto;
+			    left: 0;
+			    margin: 0;
+			    position: relative;
+			    text-align: center;
+			    width: 100%;
+			}
+				.SmallPreviewImageContainer .SmallImage {
+					display: inline-block;
+				    height: auto;
+				    margin: 0 1% 0;
+				    width: 32%;
+				    max-width: 100px;
+				    min-height: 73px;
+				}
+					.SmallPreviewImageContainer .SmallImage:first-child{
+						margin-left: 0;
+					}
+					.SmallPreviewImageContainer .SmallImage:last-child{
+						margin-right: 0;
+					}
+				.SmallPreviewImageContainer .thumb {
+				    width: 100%;
+				    height: auto;
+				}
+
+
 @media screen and (max-width: 830px) {
 
 	.og-expander h3 { font-size: 32px; }

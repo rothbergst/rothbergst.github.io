@@ -138,6 +138,10 @@ a:hover {
 	height: 94px;
 }
 
+.gallerythumbs{
+	height: 200px;
+}
+
 img.gallery{
 	height: 500px;
 }
