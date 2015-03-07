@@ -297,7 +297,7 @@ var Grid = (function() {
 		scrollExtra = 0;
 
 		// if a preview exists and previewPos is different (different row) from item´s top then close it
-		if( typeof preview != 'undefined' ) {
+		if( typeof preview !== 'undefined' ) {
 
 			// not in the same row
 			if( previewPos !== position ) {
@@ -344,8 +344,24 @@ var Grid = (function() {
 			// create Preview structure:
 			this.$title = $( '<h3></h3>' );
 			this.$description = $( '<p></p>' );
-			this.$href = $( '<a href="#">Full size</a>' );
-			this.$details = $( '<div class="og-details"></div>' ).append( this.$title, this.$description, this.$href );
+			this.$href = $( ' ' );
+			
+			this.$thumbnailSrcOne   = $('<img class="thumb" rel="" src="">');
+			this.$thumbnailSrcTwo   = $('<img class="thumb" rel="" src="">');
+			this.$thumbnailSrcThree = $('<img class="thumb" rel="" src="">');
+			this.$thumbnailSrcFour  = $('<img class="thumb" rel="" src="">');
+			// Anchor tag for thumbnail 1
+			this.$smallThumbContainerOne = $('<a class="SmallImage" href="#"></a>').append( this.$thumbnailSrcOne );
+			// Anchor tag for thumbnail 2
+			this.$smallThumbContainerTwo = $('<a class="SmallImage" href="#"></a>').append( this.$thumbnailSrcTwo );
+			// Anchor tag for thumbnail 3
+			this.$smallThumbContainerThree = $('<a class="SmallImage" href="#"></a>').append( this.$thumbnailSrcThree );
+			this.$smallThumbContainerFour = $('<a class="SmallImage" href="#"></a>').append( this.$thumbnailSrcFour );
+			
+			// A div to wrap the thumbnails
+			this.$smallPreviewContainer = $('<div class="SmallPreviewImageContainer"></div>').append(this.$smallThumbContainerOne, this.$smallThumbContainerTwo, this.$smallThumbContainerThree, this.$smallThumbContainerFour);
+
+			this.$details = $( '<div class="og-details"></div>' ).append( this.$title, this.$description, this.$href , this.$smallPreviewContainer);
 			this.$loading = $( '<div class="og-loading"></div>' );
 			this.$fullimage = $( '<div class="og-fullimg"></div>' ).append( this.$loading );
 			this.$closePreview = $( '<span class="og-close"></span>' );
@@ -382,12 +398,56 @@ var Grid = (function() {
 					href : $itemEl.attr( 'href' ),
 					largesrc : $itemEl.data( 'largesrc' ),
 					title : $itemEl.data( 'title' ),
-					description : $itemEl.data( 'description' )
+					description : $itemEl.data( 'description' ),
+
+					// price : $itemEl.data('price'),
+					thumb1 : $itemEl.data('thumb1'),
+					thumb2  : $itemEl.data('thumb2'),
+					thumb3 : $itemEl.data('thumb3'),
+					thumb4 : $itemEl.data('thumb4'),
+					// video : $itemEl.data('video')
 				};
+
 
 			this.$title.html( eldata.title );
 			this.$description.html( eldata.description );
 			this.$href.attr( 'href', eldata.href );
+
+
+			// This updates the thumbnails with relative images
+			this.$thumbnailSrcOne.attr( 'src', (eldata.thumb1 ? eldata.thumb1 : ''));
+			this.$smallThumbContainerOne.attr( 'rel', (eldata.thumb1 ? eldata.thumb1 : ''));
+
+			this.$thumbnailSrcTwo.attr( 'src', (eldata.thumb2 ? eldata.thumb2 : ''));
+			this.$smallThumbContainerTwo.attr( 'rel', (eldata.thumb2 ? eldata.thumb2 : ''));
+
+			this.$thumbnailSrcThree.attr( 'src', (eldata.thumb3 ? eldata.thumb3 : ''));
+			this.$smallThumbContainerThree.attr( 'rel', (eldata.thumb3 ? eldata.thumb3 : ''));
+
+			this.$thumbnailSrcFour.attr( 'src', (eldata.thumb4 ? eldata.thumb4 : ''));
+			this.$smallThumbContainerFour.attr( 'rel', (eldata.thumb4 ? eldata.thumb4 : ''));
+
+			var fix = function(key, element){
+				if(!key){
+					element.css('display','none');
+				}else{
+					element.css('display','inline-block');
+				}
+			};
+			fix(eldata.thumb1, this.$thumbnailSrcOne);
+			fix(eldata.thumb2, this.$thumbnailSrcTwo);
+			fix(eldata.thumb3, this.$thumbnailSrcThree);
+			fix(eldata.thumb4, this.$thumbnailSrcFour);
+
+
+		
+
+			// // Adds the SRC Video in
+			// if( eldata.video ) {
+			// 	this.$iframeWrapper.attr( 'src', (eldata.video ? eldata.video : '')).css('display','block');
+			// } else {
+			// 	this.$iframeWrapper.css('display','none');
+			// }
 
 			var self = this;
 			
@@ -411,7 +471,11 @@ var Grid = (function() {
 				} ).attr( 'src', eldata.largesrc );	
 			}
 
+			this.PreviewGallery();
+
 		},
+
+
 		open : function() {
 
 			setTimeout( $.proxy( function() {	
@@ -504,8 +568,20 @@ var Grid = (function() {
 		},
 		getEl : function() {
 			return this.$previewEl;
+		},
+
+		// HAVE TO ACTIVATE THE GALLERY HERE ONCE THE PREVIEW WINDOW IS OPEN AND IMAGES ARE LOADED
+			// THIS IS BECUASE JQUERY WILL NOT PICK UP THE THUMBS ON LOAD :)
+		PreviewGallery : function() {
+			$(".SmallImage").click(function() {
+				var image = $(this).attr("rel");
+				$('.og-fullimg').hide();
+				$('.og-fullimg').html('<img src="' + image + '"/>');
+				$('.og-fullimg').fadeIn('slow');
+				return false;
+			});
 		}
-	}
+	};
 
 	return { 
 		init : init,
