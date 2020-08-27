@@ -294,7 +294,8 @@ a {
 }
 a:hover {
 	color: red;
-	text-decoration: line-through;
+	font-style: italic;
+	/* text-decoration: line-through; */
 }
 
 
